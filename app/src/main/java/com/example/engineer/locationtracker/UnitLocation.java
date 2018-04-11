@@ -10,18 +10,18 @@ import java.util.Date;
  */
 
 public class UnitLocation {
-    private static String unit = "MoBiLET_01";
-    private Date logTime;
+    private static String uuid = "9660d29e5d";
+    private long logtime;
     private double latitude;
     private double longitude;
 
-    public String getUnit(){return unit;}
-    public Date getDate(){return logTime;}
+    public String getUnit(){return uuid;}
+    public long getTime(){return logtime;}
     public double getLatitude(){return latitude;}
     public double getLongitude(){return longitude;}
 
    // public String setUnit(){return unit;}
-    public void setDate(Date time){this.logTime = time;}
+    public void setTime(long time){this.logtime = time;}
     public void setLatitude(double lat){this.latitude = lat;}
     public void setLongitude(double lng){this.longitude = lng;}
 }

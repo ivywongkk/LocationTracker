@@ -66,6 +66,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationManager locationManager;
     UnitLocation unitLocation;
     boolean isNetworkEnabled, isGPSEnabled;
+    long time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +101,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng mob01 = new LatLng(location.getLatitude(), location.getLongitude());
         markMob01.setPosition(mob01);
         unitLocation = new UnitLocation();
-        unitLocation.setDate(Calendar.getInstance().getTime());
+        unitLocation.setTime(new Date().getTime());
         unitLocation.setLatitude(location.getLatitude());
         unitLocation.setLongitude(location.getLongitude());
 
@@ -191,11 +192,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         protected String doInBackground(String...arg0) {
 
             try {
-                URL url = new URL("https://hkstp.1ptd.com/FleetControl/v1/tracking/add/add.php");
+                URL url = new URL("https://hkstp.1ptd.com/FleetControl/v1/crumbs/addCrumb.php");
 
                 JSONObject postUnitLoc = new JSONObject();
-                postUnitLoc.put("name", unitLocation.getUnit());
-                postUnitLoc.put("datestamp", unitLocation.getDate());
+                postUnitLoc.put("uuid", unitLocation.getUnit());
+                postUnitLoc.put("time", unitLocation.getTime()/1000);
                 postUnitLoc.put("latitude", unitLocation.getLatitude());
                 postUnitLoc.put("longitude", unitLocation.getLongitude());
                 Log.d("params", postUnitLoc.toString());
